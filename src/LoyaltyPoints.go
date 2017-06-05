@@ -332,6 +332,7 @@ func (t *SimpleChaincode) GetUserDetails(stub shim.ChaincodeStubInterface, args 
 	return mapB, nil
 }
 
+//for counting users
 type CountApplication struct {
 	Count int `json:"count"`
 }

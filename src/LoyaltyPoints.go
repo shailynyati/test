@@ -219,10 +219,10 @@ func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string
 
 	// Create application Table
 	err = stub.CreateTable("UserTable", []*shim.ColumnDefinition{
-		&shim.ColumnDefinition{Name: "ffid", Type: shim.ColumnDefinition_STRING, Key: true},
+		&shim.ColumnDefinition{Name: "ffId", Type: shim.ColumnDefinition_STRING, Key: true},
 		&shim.ColumnDefinition{Name: "firstName", Type: shim.ColumnDefinition_STRING, Key: false},
 		&shim.ColumnDefinition{Name: "lastName", Type: shim.ColumnDefinition_STRING, Key: false},
-		&shim.ColumnDefinition{Name: "dob", Type: shim.ColumnDefinition_STRING, Key: false},
+		&shim.ColumnDefinition{Name: "DOB", Type: shim.ColumnDefinition_STRING, Key: false},
 		&shim.ColumnDefinition{Name: "email", Type: shim.ColumnDefinition_STRING, Key: false},
 		&shim.ColumnDefinition{Name: "address", Type: shim.ColumnDefinition_STRING, Key: false},
 		&shim.ColumnDefinition{Name: "country", Type: shim.ColumnDefinition_STRING, Key: false},
@@ -231,7 +231,7 @@ func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string
 		&shim.ColumnDefinition{Name: "createdBy", Type: shim.ColumnDefinition_STRING, Key: false},
 		&shim.ColumnDefinition{Name: "title", Type: shim.ColumnDefinition_STRING, Key: false},
 		&shim.ColumnDefinition{Name: "gender", Type: shim.ColumnDefinition_STRING, Key: false},
-		&shim.ColumnDefinition{Name: "points", Type: shim.ColumnDefinition_STRING, Key: false},
+		&shim.ColumnDefinition{Name: "totalPoints", Type: shim.ColumnDefinition_STRING, Key: false},
 	})
 
 	if err != nil {
@@ -300,13 +300,13 @@ func (t *SimpleChaincode) GetUserDetails(stub shim.ChaincodeStubInterface, args 
 
 	row, err := stub.GetRow("UserTable", columns)
 	if err != nil {
-		jsonResp := "{\"Error\":\"Failed to get the data for the application " + ffId + "\"}"
+		jsonResp := "{\"Error\":\" IN Failed to get rows and the data for the application " + ffId + "\"}"
 		return nil, errors.New(jsonResp)
 	}
 
 	// GetRows returns empty message if key does not exist
 	if len(row.Columns) == 0 {
-		jsonResp := "{\"Error\":\"Failed to get the data for the application " + ffId + "\"}"
+		jsonResp := "{\"Error\":\"Failed to get the data for the application as length is 0 " + ffId + "\"}"
 		return nil, errors.New(jsonResp)
 	}
 

@@ -242,7 +242,7 @@ func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string
 }
 
 //To store user details in User Table
-func (t *SimpleChaincode) RegisterUserDetails(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
+func (t *SimpleChaincode) RegisterUserDetails(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	ffId := args[0]
 	firstName := args[1]
 	lastName := args[2]

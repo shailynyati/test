@@ -178,10 +178,10 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 		return t.getPoints(stub, args)
 	}
 	if function == "GetUserDetails" {
-		return t.getPoints(stub, args)
+		return t.GetUserDetails(stub, args)
 	}
 	if function == "GetUserCount" {
-		return t.getPoints(stub, args)
+		return t.GetUserCount(stub, args)
 	}
 
 	fmt.Println("query did not find func: " + function)
@@ -285,7 +285,7 @@ func (t *SimpleChaincode) RegisterUserDetails(stub shim.ChaincodeStubInterface, 
 	return nil, nil
 }
 
-func (t *SimpleChaincode) GetUserDetails(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
+func (t *SimpleChaincode) GetUserDetails(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 
 	if len(args) != 2 {
 		return nil, errors.New("Incorrect number of arguments. Expecting applicationid to query")
@@ -337,7 +337,7 @@ type CountApplication struct {
 }
 
 // To count number of users
-func (t *SimpleChaincode) GetUserCount(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
+func (t *SimpleChaincode) GetUserCount(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	if len(args) != 1 {
 		return nil, errors.New("Incorrect number of arguments. Expecting 1.")
 	}

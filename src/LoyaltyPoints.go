@@ -152,6 +152,10 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface, function stri
 	if function == "RegisterUser" {
 		return t.RegisterUser(stub, args)
 	}
+	if function == "RegisterUserDetails" {
+		return t.RegisterUser(stub, args)
+	}
+
 	if function == "AddDeletePoints" {
 		return t.AddDeletePoints(stub, args)
 	}
@@ -173,6 +177,13 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 	if function == "getPoints" {
 		return t.getPoints(stub, args)
 	}
+	if function == "GetUserDetails" {
+		return t.getPoints(stub, args)
+	}
+	if function == "GetUserCount" {
+		return t.getPoints(stub, args)
+	}
+
 	fmt.Println("query did not find func: " + function)
 
 	return nil, errors.New("Received unknown function query: " + function)

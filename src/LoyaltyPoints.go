@@ -153,7 +153,7 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface, function stri
 		return t.RegisterUser(stub, args)
 	}
 	if function == "RegisterUserDetails" {
-		return t.RegisterUser(stub, args)
+		return t.RegisterUserDetails(stub, args)
 	}
 
 	if function == "AddDeletePoints" {
@@ -282,7 +282,8 @@ func (t *SimpleChaincode) RegisterUserDetails(stub shim.ChaincodeStubInterface, 
 	if !ok {
 		return []byte("Row with given key" + args[0] + " already exists"), errors.New("insertTableOne operation failed. Row with given key already exists")
 	}
-	return nil, nil
+
+	return []byte("success"), nil
 }
 
 func (t *SimpleChaincode) GetUserDetails(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
@@ -346,13 +347,11 @@ func (t *SimpleChaincode) GetUserCount(stub shim.ChaincodeStubInterface, args []
 	if err != nil {
 		return nil, fmt.Errorf("Failed to retrieve row")
 	}
-
 	for row := range rows {
 		if len(row.Columns) != 0 {
 			contractCounter++
 		}
 	}
-
 	res2E := CountApplication{}
 	res2E.Count = contractCounter
 	mapB, _ := json.Marshal(res2E)

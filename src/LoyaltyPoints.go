@@ -287,7 +287,7 @@ func (t *SimpleChaincode) RegisterUserDetails(stub shim.ChaincodeStubInterface, 
 
 func (t *SimpleChaincode) GetUserDetails(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 
-	if len(args) != 2 {
+	if len(args) != 1 {
 		return nil, errors.New("Incorrect number of arguments. Expecting applicationid to query")
 	}
 
@@ -338,9 +338,6 @@ type CountApplication struct {
 
 // To count number of users
 func (t *SimpleChaincode) GetUserCount(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
-	if len(args) != 1 {
-		return nil, errors.New("Incorrect number of arguments. Expecting 1.")
-	}
 	var columns []shim.Column
 	contractCounter := 0
 

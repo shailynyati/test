@@ -8,6 +8,7 @@ import (
 	"strconv"
 )
 
+//Chaincode interface
 type SimpleChaincode struct {
 }
 
